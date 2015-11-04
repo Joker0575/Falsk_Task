@@ -23,17 +23,21 @@ def login():
     if request.method == 'POST':
         user = User(email="abc",password='rajkoti05@gmail.com ')
         user.save()
-        return redirect("/logout", code=302)
+        return redirect("/application", code=302)
     return render_template('index.html')
 
 
-@app.route('/submit_data',methods=['GET', 'POST'])
-def submit_data():
+@app.route('/application',methods=['GET', 'POST'])
+def application():
     if request.method == 'POST':
-        user = User(email="abc",password='rajkoti05@gmail.com ')
-        user.save()
-        return redirect("/logout", code=302)
-    return render_template('index.html')
+        data = Data(subject="test",text_data='rajkoti05@gmail.com ')
+        data.save()
+        return redirect("/submitted_data", code=302)
+    return render_template('app.html')
+
+@app.route('/submitted_data',methods=['GET', 'POST'])
+def submitted_data():
+    return render_template('submitted.html')
 
 
 @app.route('/logout',methods=['GET'])
