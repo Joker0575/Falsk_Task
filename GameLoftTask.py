@@ -48,7 +48,8 @@ def submitted_data():
     if request.method == 'POST':
         subject = request.form['subject']
         text_data = request.form['text_area']
-        data = Data(subject=subject,text_data=text_data)
+        now = time.strftime("%c")
+        data = Data(subject=subject,text_data=text_data,date=str(now))
         data.save()
     return render_template('submitted.html' ,text=data)
 
